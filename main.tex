@@ -45,7 +45,7 @@
 \begin{frame}[t, fragile]
   \frametitle{\includegraphics[width=0.66\linewidth]{img/arbor-lines-proto-colour-full}}
   \framesubtitle{Designing a HPC-benchmark for biologically realistic Neuron Simulations\\
-    \tiny{T. Hater, B. Huisman (Forschungszentrum Jülich)}}
+    \tiny{T. Hater, B.F.B. Huisman (Forschungszentrum Jülich)}}
   \begin{columns}[onlytextwidth,T]
     \begin{column}{0.76\textwidth}
       Computational neuroscience is a major consumer of HPC resources. While
@@ -60,7 +60,7 @@
       cell database\cite{allen-v1}. The goal of this project is twofold, first
       to understand and improve the performance of Arbor at scale and second to
       study the suitability of current and emerging HPC architectures for these
-      kind of workloads.
+      kinds of workloads.
     \end{column}
     \begin{column}{0.22\textwidth}
       \vspace*{-1ex}
@@ -81,8 +81,8 @@
     \begin{column}[T]{0.35\textwidth}
       \textbf{Detailed Neuron Models}
       \begin{itemize}
-        \item Possess a morphology, split in to compartments
-        \item Sub-regions are adorned with active components, i.e.\ ion channels.
+        \item Cells possess a morphology, split in to compartments.
+        \item Sub-regions are decorated with active components, i.e.\ ion channels.
         \item Complex neuron behaviour emerges from the interplay of ion
               channels.
         \item Individual ion channels driven by differential equations.
@@ -132,7 +132,7 @@
         \item High-level Python interface.
         \item Supports point models and complex cable cells.
         \item Custom DSL compiler for ion channels.
-        \item Permissive BSD-3 license
+        \item Permissive BSD-3 license.
       \end{itemize}
     \end{column}
   \end{columns}
@@ -152,19 +152,19 @@
           \item compartments per branch $k$
         \end{itemize}
         \item Two sub-regions with different dynamics
-        \item \emph{Soma}
+        \item \emph{Soma:}
         \begin{itemize}
           \item $6.3\,\mu m$ sphere at the root of the tree
           \item 7 active channels + 1 passive
         \end{itemize}
-        \item \emph{Dendrite}
+        \item \emph{Dendrite:}
         \begin{itemize}
           \item actual branching structure
           \item 4 active channels + 1 passive
         \end{itemize}
-        \item \emph{Synapses} connection are given as simple exponential
-              synapses.
-        \item Dynamics are based on the Allen Cell database \cite{allen-v1}.
+        \item \emph{Synapses:} simple exponential dynamics.
+        \item Dynamics are based on the Allen Cell database \cite{allen-v1} and
+              cover relevant protoytypical channels.
       \end{itemize}
     \end{column}
     \begin{column}[T]{0.45\textwidth}
@@ -208,13 +208,15 @@
     \begin{column}[T]{0.25\textwidth}
       \textbf{The Network}
       \begin{itemize}
-        \item $N$ cells in total, sub-divided into rings of size $n$.
+        \item $N$ cells in total, subdivided into rings of size $n$.
         \item One connection from the soma of cell $i$ to the soma of cell $i + 1 \mod n$
-        \item A spike is injected at $t=0$ which will propagate indefinitely through the ring.
+        \item A spike is injected at $t=0$ which will propagate indefinitely through each ring.
         \item A configurable number of additional connections with zero weight
               are added between rings.
         \item These stress the system's interconnect, but do not alter the
               rings' behaviour.
+        \item The combination of steady-state rings and zero-weight external
+              connections allows for a stable and predictable workload.
         \item The number of spikes generated on all cells is collected to
               provide a measure of validation.
       \end{itemize}
@@ -231,7 +233,7 @@
         \item We have run this benchmark at varying scales on the JUWELS Booster
         system at the JSC.
         \begin{itemize}
-          \item 4 $\times$ A100 GPU per node.
+          \item 4 $\times$ NVIDIA A100 GPU per node.
           \item $160\,GB$ of GPU memory.
           \item $40\, TF/s$ of double precision compute.
         \end{itemize}
@@ -287,9 +289,9 @@
     \begin{column}[T]{0.25\textwidth}
       \textbf{Conclusion}
 
-      Designing a neuro science specific HPC benchmark
+      Designing a neuroscience specific HPC benchmark
       \begin{itemize}
-        \item Scalable for approximating relevant neuro science
+        \item Scalable for approximating relevant neuroscience
               workloads on existing and emerging architectures.
         \item Workloads can be tuned to stress a mix of system parameters, i.e.
               computation and interconnect.
